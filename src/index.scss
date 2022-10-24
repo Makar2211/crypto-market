@@ -5,6 +5,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color:  #e7f6ff;
 }
+* {
+  font-family: 'Inter' system-ui;
+}
 
 .wrapper{
     background: #FFFFFF;
@@ -72,14 +75,31 @@ header {
 }
 
 .content{
-  margin: 40px 60px 0px 60px;
-
+  padding: 40px 60px 0px 60px;
+  .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .search{
+      border: 1px solid #F3F3F3;
+      border-radius: 10px;
+      display: flex;
+      input{
+        border: 0;
+        padding: 0 14px;
+      }
+     
+      img{
+        padding: 15px;
+      }
+    }
+  }
+    
   h2{
     margin: 0px;
     font-weight: 700;
     font-size: 32px;
     line-height: 39px;
-
     color: #000000;
   }
   .cards{
@@ -89,14 +109,24 @@ header {
     flex-wrap: wrap;
   }
   .card{
+      position: relative;
       box-sizing: border-box;
       width: 210px;
-      height: 260px;
-      left: 145px;
-      top: 676px;
+      min-height: 260px;
       background: #ffffff;
       border: 1px solid #F3F3F3;
       border-radius: 40px;
+      transition: box-shadow 0.2s ease-in-out, transform  0.2s ease-in-out;
+      &:hover{
+        box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.05);
+        transform: translateY(-5px);
+      }
+      .like{
+        position: absolute;
+        top: 29px;
+        left: 30px;
+        cursor: pointer;
+      }
       .img{
         padding: 20px 44px 14px 33px;
       }
@@ -137,4 +167,160 @@ header {
         }
       }
   }
+}
+.overrlay{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0 , 0,  0.2);
+  z-index: 1;
+}
+.drawer{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 385px;
+  height: 100%;
+  right: 0;
+  background: #FFFFFF;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 0px 30px 0 30px;
+  .cartTop{
+    display: flex;
+    justify-content: space-between;
+    div{
+      img{
+        margin-top: 30px;
+        opacity: 0.5;
+        &:hover{
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .items{
+    flex: 1;
+    overflow: auto;
+    margin-bottom: 40px;
+  }
+  h2{
+    margin: 0;
+    margin-top: 30px;
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  
+  .cartItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 20px 20px 20px 20px;
+    box-sizing: border-box;
+    width: 325px;
+    min-height: 119px;
+    background: #FFFFFF;
+    border: 1px solid #F3F3F3;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    &:last-child{
+      margin-bottom: 0px;
+    }
+    .soker{
+      width: 70px;
+      height: 70px;
+      display: block;
+      margin-bottom: 15px;
+      margin-right: -10px;
+    }
+    p{
+      margin: 0;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      color: #000000;
+      margin-bottom: 8px;
+    }
+    b{
+      font-size: 16px;
+      cursor: pointer;
+      transition: opacity 0.2s ease-in-out;
+    }
+    .minus{
+      opacity: 0.6;
+      &:hover{
+        opacity: 1;
+      }
+    }
+    }
+    .footerDrawer{
+      div{
+        flex: 1;
+        height: 1px;
+        border-bottom: 1px dashed #DFDFDF;
+        position: relative;
+        top: -4px;
+        margin: 0 7px;
+      }
+      ul{
+        padding: 0;
+      }
+      .greenBotton{
+        width: 100%;
+        margin-bottom: 30px;
+        height: 55px;
+        background: #9DD558;
+        border-radius: 18px;
+        border: none;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        color: #FFFFFF;
+        margin-top: 10px;
+        transition: background 0.2s ease-in-out;
+        
+
+        &:hover{
+          background: lighten( #9eeb3f, 10%);
+          cursor: pointer;
+        }
+        &:active {
+          background: darken( #9eeb3f, 5%);
+        }
+
+      }
+      .footerDrawerLi{
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 20px;
+        &:last-child{
+          margin-bottom: 0px;
+        }
+        
+        
+      }
+      .greenBotton{
+        position: relative;
+        &:hover{
+          img{
+            transform: translateX(5px);
+          }
+        }
+        
+        img{
+          position: absolute;
+          right: 30px;
+          top: 20px;
+          transition: transform 0.2s ease-in-out;
+          
+
+
+        }
+      }
+    }
 }

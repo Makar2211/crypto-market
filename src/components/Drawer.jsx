@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Drawer = () => {
   return (
-<div style={{display: "block"}} className="overrlay">  
+<div style={{display: "none"}} className="overrlay">  
     <div className="drawer">
    
         <div className="cartTop">

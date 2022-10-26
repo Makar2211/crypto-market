@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+
 import style from './Card.module.scss'
 
-export const Card = ({name, price, imageUrl}) => {
-  const clickOnPlus =  () => {
-    return alert(name)
+export const Card = ({name, price, imageUrl, onClickPlus, onClickFavourite}) => {
+  const [isAdded, setIsAdded] = useState(false)
+  const handelClickPlus = () => {
+    onClickPlus({name, price, imageUrl})
+    setIsAdded(!isAdded)
   }
+  useEffect(() => {
+    /* console.log('return') */
+  }, [isAdded])
   return (
         <div className={style.card}>
           <div>
-          <img className={style.like}  src='/img/heart-like.svg'/> 
+          <img className={style.like} onClick={onClickFavourite}  src='/img/heart-like.svg'/> 
           </div>
           <img className={style.img} width={133} height={112} src={imageUrl}/>
           <p>{name}</p>
@@ -17,9 +23,7 @@ export const Card = ({name, price, imageUrl}) => {
               <span>Цена:</span><br/>
               <b>{price} uan.</b>
             </div>
-            <button  onClick={clickOnPlus}>
-              <img  width={11} height={11}src="/img/plus.svg" /> 
-            </button>
+            <img className={style.img_bot} onClick={handelClickPlus} src={isAdded === true ? '/img/added-to-card.svg' : '/img/plus.svg'} /> 
           </div>
         </div>  
     )

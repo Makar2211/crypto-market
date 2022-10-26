@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Header = () => {
+export const Header = ({onClickCard}) => {
     return (
         <header>
         <div className="headerLeft">
@@ -13,8 +13,8 @@ export const Header = () => {
 
           <div className="headerRight">
             <ul >
-              <li>
-              <img width={18} height={18} src="/img/cart.svg"/>
+              <li onClick={onClickCard} style={{cursor: 'pointer'}}>
+              <img width={18} height={18}  src="/img/cart.svg"/>
                 <span>1205 uan.</span>
               </li>
               <li>

@@ -1,6 +1,20 @@
 import React from 'react'
 import { Card } from '../components/Card'
-export const Home = ({items, searchValue, setSearchValue, onChangeInput, onAddToFafourite, onAddToCard}) => {
+export const Home = ({items, searchValue, setSearchValue, onChangeInput, onAddToFafourite, onAddToCard, cardItems, isLoading }) => {
+  const renderItems = () => {
+    const filteredItems =  items.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
+   return (isLoading ? [...Array(8)] : filteredItems)
+   .map((item, index) => {
+        return <Card 
+          key={index}
+          onClickFavourite={(obj) => onAddToFafourite(obj) }
+          onClickPlus={(obj) => onAddToCard(obj)}
+          added={cardItems.some(obj => Number(obj.id) === Number(item.id))}
+          {...item}
+          loading={isLoading}
+        />
+    })
+  }
   return (
         <div className="content">
         <div className='header'>
@@ -15,17 +29,7 @@ export const Home = ({items, searchValue, setSearchValue, onChangeInput, onAddTo
         </div>
 
       <div className="cards">
-      {items
-        .filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
-          .map((item, index) => {
-            return <Card 
-              key={index}
-
-              onClickFavourite={(obj) => onAddToFafourite(obj) }
-              onClickPlus={(obj) => onAddToCard(obj)}
-              {...item}
-            />
-        })}
+      {renderItems()}
       </div>
     </div>
   )

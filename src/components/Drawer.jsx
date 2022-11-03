@@ -16,7 +16,7 @@ export const Drawer = ({onClickCard,onRemove,  items = []}) => {
               <div className="items">
           {
             items.map(obj => (
-              <>
+              <div key={obj.id}>
                   <div className="cartItem">
                       <img className="soker" src={obj.imageUrl} alt='sneakers'/>
                       <div style={{paddingLeft: 20}}>
@@ -29,7 +29,7 @@ export const Drawer = ({onClickCard,onRemove,  items = []}) => {
 
               
               
-          </>
+          </div>
             ))
           }
         </div>

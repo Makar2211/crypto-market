@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {Home} from './pages/Home.jsx'
 import {Favourites} from './pages/Favourites.jsx'
 
+export const appContext = React.createContext({})
+
 function App() {
   const [items, setItems] = useState([])
   const [cardItems, setCardItems] = useState([])
@@ -14,19 +16,24 @@ function App() {
   const [searchValue, setSearchValue] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
+  
 
   React.useEffect(() => {
       async function fetchData() {
-        const cardReaponse = await axios.get('https://635934bbff3d7bddb99be8d1.mockapi.io/card')
+        //TODO: TO DO TRY CATCH AND PROMISEALL
+        try {
+          const cardReaponse = await axios.get('https://635934bbff3d7bddb99be8d1.mockapi.io/card')
         const favouriteReaponse = await axios.get('https://635934bbff3d7bddb99be8d1.mockapi.io/favourite')
         const itemsReaponse  = await axios.get('https://635934bbff3d7bddb99be8d1.mockapi.io/items')
 
-        setIsLoading(false)
-        
         setCardItems(cardReaponse.data)
         setFavourites(favouriteReaponse.data)
         setItems(itemsReaponse.data)
-      }
+        setIsLoading(false)
+        }catch(err) {
+          alert('ошибка')
+        }
+      } 
       fetchData()
   }, [])
 
@@ -34,26 +41,28 @@ function App() {
     try{
       if(cardItems.find((item) => Number(item.id) === Number(obj.id))) {
         axios.delete(`https://635934bbff3d7bddb99be8d1.mockapi.io/card/${obj.id}`)
-        setCardItems(prev => prev.filter((item) =>  Number(item.id) !== Number(obj.id))) 
+        setCardItems((prev) => prev.filter((item) =>  Number(item.id) !== Number(obj.id))) 
       } else {
         axios.post('https://635934bbff3d7bddb99be8d1.mockapi.io/card', obj)
-        setCardItems(prev => [...prev, obj] )
+        setCardItems((prev) => [...prev, obj] )
       }
-    } catch(err) {
+    } catch(error) {
+      console.error(error)
     }
   }
 
   const onAddToFafourite = async (obj) => {
     try {
-      if (favourites.find((favObj) => favObj.id === obj.id ) ) {
+      if (favourites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
         axios.delete(`https://635934bbff3d7bddb99be8d1.mockapi.io/favourite/${obj.id}`)
+        setFavourites((prev) => prev.filter((item) =>  Number(item.id) !== Number(obj.id)))
       } else {
         const { data } = await axios.post('https://635934bbff3d7bddb99be8d1.mockapi.io/favourite', obj)
         setFavourites(prev => [...prev, data] )
       }
       
     } catch (error) {
-      alert('не удалось добавить в фавориты')
+      console.error(error)
     }
   }
 
@@ -70,8 +79,14 @@ function App() {
     setSearchValue(e.target.value)
   }
 
+  const isItemAdded = (id) => {
+   return  cardItems.some((obj) => Number(obj.id) === Number(id))
+  }
+  
+
   return (
-    <div className="wrapper">
+    <appContext.Provider value={ {cardItems, favourites, items, isItemAdded, onAddToFafourite, handelOnCard, setCardItems} }>
+      <div className="wrapper">
       
       { cartOpened === true ? <Drawer onRemove={onRemoveItem}  items={cardItems} onClickCard={handelOnCard}/> : null }
 
@@ -79,8 +94,7 @@ function App() {
         <Switch>
           <Route exact  path="/favourites"> 
                 <Favourites
-                items={favourites}
-                onAddToFafourite={onAddToFafourite}
+                
               />
           </Route>
           <Route exact  path="/"> 
@@ -98,6 +112,7 @@ function App() {
         </Switch>
 
     </div>
+    </appContext.Provider>
   );
 }
 export default App;

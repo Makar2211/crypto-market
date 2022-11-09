@@ -1,19 +1,20 @@
 import React from 'react'
 import { Card } from '../components/Card'
-export const Home = ({items, searchValue, setSearchValue, onChangeInput, onAddToFafourite, onAddToCard, cardItems, isLoading }) => {
+
+export const Home = ({items, searchValue, setSearchValue, onChangeInput, onAddToFafourite, onAddToCard,  isLoading }) => {
+  
   const renderItems = () => {
     const filteredItems =  items.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
-   return (isLoading ? [...Array(8)] : filteredItems)
-   .map((item, index) => {
-        return <Card 
+   return (isLoading ? [...Array(8)] : filteredItems).map((item, index) => (
+       <Card 
           key={index}
           onClickFavourite={(obj) => onAddToFafourite(obj) }
           onClickPlus={(obj) => onAddToCard(obj)}
-          added={cardItems.some(obj => Number(obj.id) === Number(item.id))}
-          {...item}
           loading={isLoading}
+          {...item}
+          
         />
-    })
+   ))
   }
   return (
         <div className="content">

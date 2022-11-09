@@ -1,22 +1,23 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import {appContext} from '../../App'
 
 import ContentLoader from "react-content-loader"
 import style from './Card.module.scss'
 
-export const Card = ({id, name, price, imageUrl, onClickPlus, onClickFavourite, favourited = false , added = false,  loading = false }) => {
-  const [isAdded, setIsAdded] = useState(added)
+export const Card = ({id, name, price, imageUrl, onClickPlus, onClickFavourite, favourited = false ,   loading = false}) => {
+  const {isItemAdded} = React.useContext(appContext)
   const [isFavourite, setIsFavourite] = useState(favourited)
+
+
   const handelClickPlus = () => {
     onClickPlus({id, name, price, imageUrl})
-    setIsAdded(!isAdded)
     
   }
   const handelLike = () => {
     onClickFavourite({id, name, price, imageUrl})
     setIsFavourite(!isFavourite)
   }
-  useEffect(() => {
-  }, [isAdded])
+
   return (
         <div className={style.card}>
           {
@@ -46,7 +47,7 @@ export const Card = ({id, name, price, imageUrl, onClickPlus, onClickFavourite, 
                       <span>Цена:</span><br/>
                       <b>{price} uan.</b>
                     </div>
-                    <img className={style.img_bot} onClick={handelClickPlus} src={isAdded === true ? '/img/added-to-card.svg' : '/img/plus.svg'} /> 
+                    <img className={style.img_bot} onClick={handelClickPlus} src={isItemAdded(id)  ? '/img/added-to-card.svg' : '/img/plus.svg'} /> 
               </div>            
                </>
             )

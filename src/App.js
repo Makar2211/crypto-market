@@ -5,8 +5,11 @@ import { Drawer } from './components/Drawer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {Home} from './pages/Home.jsx'
 import {Favourites} from './pages/Favourites.jsx'
+import { Orders } from './pages/Orders';
 
 export const appContext = React.createContext({})
+
+
 
 function App() {
   const [items, setItems] = useState([])
@@ -23,28 +26,41 @@ function App() {
         //TODO: TO DO TRY CATCH AND PROMISEALL
         try {
           const cardReaponse = await axios.get('https://635934bbff3d7bddb99be8d1.mockapi.io/card')
-        const favouriteReaponse = await axios.get('https://635934bbff3d7bddb99be8d1.mockapi.io/favourite')
-        const itemsReaponse  = await axios.get('https://635934bbff3d7bddb99be8d1.mockapi.io/items')
+          const favouriteReaponse = await axios.get('https://635934bbff3d7bddb99be8d1.mockapi.io/favourite')
+          const itemsReaponse  = await axios.get('https://635934bbff3d7bddb99be8d1.mockapi.io/items')
 
         setCardItems(cardReaponse.data)
         setFavourites(favouriteReaponse.data)
         setItems(itemsReaponse.data)
         setIsLoading(false)
         }catch(err) {
-          alert('ошибка')
+          alert('ошибка при добавлении в корзину')
         }
       } 
       fetchData()
   }, [])
 
-  const onAddToCard = (obj) => {
+  const onAddToCard = async (obj) => {
     try{
-      if(cardItems.find((item) => Number(item.id) === Number(obj.id))) {
-        axios.delete(`https://635934bbff3d7bddb99be8d1.mockapi.io/card/${obj.id}`)
-        setCardItems((prev) => prev.filter((item) =>  Number(item.id) !== Number(obj.id))) 
+      const findItem = cardItems.find((item) => Number(item.parentId) === Number(obj.id))
+      if(findItem) {
+        setCardItems((prev) => prev.filter((item) =>  Number(item.parentId) !== Number(obj.id))) 
+        await axios.delete(`https://635934bbff3d7bddb99be8d1.mockapi.io/card/${findItem.id}`)
+        
       } else {
-        axios.post('https://635934bbff3d7bddb99be8d1.mockapi.io/card', obj)
-        setCardItems((prev) => [...prev, obj] )
+       setCardItems((prev) => [...prev, obj] )
+       const { data } =  await axios.post('https://635934bbff3d7bddb99be8d1.mockapi.io/card', obj)
+       setCardItems((prev) =>  prev.map(item => {
+        if(item.parentId === data.parentId) {
+          return {
+            ...item,
+            id: data.id
+          }
+        } else {
+          return item
+        }
+       }))
+        
       }
     } catch(error) {
       console.error(error)
@@ -62,13 +78,19 @@ function App() {
       }
       
     } catch (error) {
+      alert('ошибка при добавении в закладки')
       console.error(error)
     }
   }
 
   const onRemoveItem = (id) => {
-    axios.delete(`https://635934bbff3d7bddb99be8d1.mockapi.io/card/${id}`)
-    setCardItems(prev => prev.filter( item => item.id !== id))
+    try {
+      axios.delete(`https://635934bbff3d7bddb99be8d1.mockapi.io/card/${id}`)
+      setCardItems(prev => prev.filter( item => Number(item.id) !== Number(id)))
+    } catch (error) {
+      alert('ошибка при удалении из корзины')
+      console.error(error)
+    }
   }
 
   const handelOnCard = () => {
@@ -80,12 +102,12 @@ function App() {
   }
 
   const isItemAdded = (id) => {
-   return  cardItems.some((obj) => Number(obj.id) === Number(id))
+   return cardItems.some((obj) => Number(obj.parentId) === Number(id))
   }
   
 
   return (
-    <appContext.Provider value={ {cardItems, favourites, items, isItemAdded, onAddToFafourite, handelOnCard, setCardItems} }>
+    <appContext.Provider value={ {cardItems, favourites, items, isItemAdded, onAddToFafourite, handelOnCard, setCardItems, onAddToCard} }>
       <div className="wrapper">
       
       { cartOpened === true ? <Drawer onRemove={onRemoveItem}  items={cardItems} onClickCard={handelOnCard}/> : null }
@@ -94,10 +116,10 @@ function App() {
         <Switch>
           <Route exact  path="/favourites"> 
                 <Favourites
-                
               />
           </Route>
           <Route exact  path="/"> 
+          
               <Home  
               items={items}  
               cardItems={cardItems}
@@ -108,6 +130,9 @@ function App() {
               onAddToCard={onAddToCard} 
               isLoading={isLoading}
             />
+          </Route>
+          <Route exact  path="/orders">
+            <Orders/>
           </Route>
         </Switch>
 

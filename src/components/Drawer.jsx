@@ -1,17 +1,17 @@
 import React, {useState} from 'react'
 import { Info } from './Info'
-import { appContext } from '../App'
 import axios from 'axios'
+
+import { useCard } from '../hooks/useCard'
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-export const Drawer = ({onClickCard,onRemove,  items = []}) => {
-  const {cardItems , setCardItems} = React.useContext(appContext)
+export const Drawer = ({onClickCard,onRemove,  items = [], opened}) => {
+  const {cardItems, setCardItems, totalPrice} = useCard()
   const [orderId, setOrderId] = useState(null)
   const [isOrderComplited, setIsOrderComplited] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  const totalPrice = cardItems.reduce((sum, obj) => obj.price + sum, 0)
   
   
   const onClickOrder = async () => {
@@ -33,7 +33,7 @@ export const Drawer = ({onClickCard,onRemove,  items = []}) => {
     
       
     } catch (error) {
-      alert('Ошибка при создании заказа')
+      console.error('Ошибка при создании заказа')
     }
     setIsLoading(false)
   }
@@ -56,7 +56,7 @@ export const Drawer = ({onClickCard,onRemove,  items = []}) => {
                       <img className="soker" src={obj.imageUrl} alt='sneakers'/>
                       <div style={{paddingLeft: 20}}>
                         <p>{obj.name}</p>
-                        <b>{obj.price} uan.</b>
+                        <b>{obj.price} $</b>
                       </div>
                         
                       <img onClick={() => onRemove(obj.id)}  className="minus" src="/img/btn-remove.svg"/> 
@@ -73,12 +73,12 @@ export const Drawer = ({onClickCard,onRemove,  items = []}) => {
             <li className="footerDrawerLi">
             <span>Итого </span>
             <div> </div>
-            <b>{totalPrice} uan.</b>
+            <b>{totalPrice} $</b>
             </li>
             <li className="footerDrawerLi"> 
             <span>Налог 5%</span>
             <div></div>
-            <b>{Math.floor(totalPrice * 0.05)} uan.</b>
+            <b>{Math.floor(totalPrice * 0.05)} $</b>
             </li>
         </ul>
         <button disabled={isLoading} onClick={onClickOrder} className="greenBotton">Оформить заказ <img src='/img/errow.svg'/></button>
@@ -86,7 +86,7 @@ export const Drawer = ({onClickCard,onRemove,  items = []}) => {
       </>) : (
       <Info 
         title={isOrderComplited ? 'Заказ оформлен!'  : 'Корзина пустая'} 
-        description={isOrderComplited ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке` : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'} image={isOrderComplited ? "/img/orderIdAdd.jpg" : "/img/basketNull.png"}
+        description={isOrderComplited ? `Ваш заказ #${orderId} успешно оформлен` : 'Добавьте хотя бы одну крипту, чтобы сделать заказ.'} image={isOrderComplited ? "/img/orderIdAdd.jpg" : "/img/basketNull.png"}
       />
       )
     }

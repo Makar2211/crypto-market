@@ -7,14 +7,15 @@ import style from './Card.module.scss'
 export const Card = ({id, name, price, imageUrl, onClickPlus, onClickFavourite, favourited = false ,   loading = false}) => {
   const {isItemAdded} = React.useContext(appContext)
   const [isFavourite, setIsFavourite] = useState(favourited)
+  const obj = {id, parentId: id, name, price, imageUrl}
 
 
   const handelClickPlus = () => {
-    onClickPlus({id, name, price, imageUrl})
+    onClickPlus(obj)
     
   }
   const handelLike = () => {
-    onClickFavourite({id, name, price, imageUrl})
+    onClickFavourite(obj)
     setIsFavourite(!isFavourite)
   }
 
@@ -38,16 +39,22 @@ export const Card = ({id, name, price, imageUrl, onClickPlus, onClickFavourite, 
             </ContentLoader>) : (
               <>
                 <div>
-                  <img className={style.like} onClick={handelLike}  src={isFavourite ? '/img/heart-like.svg' : '/img/heart-unlike.svg'} alt='like'/> 
+                 {
+                  onClickFavourite && 
+                   <img className={style.like} onClick={handelLike}  src={isFavourite ? '/img/heart-like.svg' : '/img/heart-unlike.svg'} alt='like'/> 
+                 }
                   </div>
                     <img className={style.img} width={133} height={112} src={imageUrl}/>
                   <p>{name}</p>
                   <div className={style.external}>
                     <div className={style.inside}>
                       <span>Цена:</span><br/>
-                      <b>{price} uan.</b>
+                      <b>{price} $</b>
                     </div>
-                    <img className={style.img_bot} onClick={handelClickPlus} src={isItemAdded(id)  ? '/img/added-to-card.svg' : '/img/plus.svg'} /> 
+                    {
+                      onClickPlus &&
+                      <img className={style.img_bot} onClick={handelClickPlus} src={isItemAdded(id)  ? '/img/added-to-card.svg' : '/img/plus.svg'} /> 
+                    }
               </div>            
                </>
             )

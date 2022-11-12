@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card } from '../components/Card'
+import Swap from '../components/Swiper'
 
 export const Home = ({items, searchValue, setSearchValue, onChangeInput, onAddToFafourite, onAddToCard,  isLoading }) => {
   
@@ -16,10 +17,15 @@ export const Home = ({items, searchValue, setSearchValue, onChangeInput, onAddTo
         />
    ))
   }
+  
   return (
         <div className="content">
+         
+         <Swap/> 
         <div className='header'>
-          <h2>Все кроссовки</h2>
+        
+        
+          <h2>Все криптовалюты</h2>
           <div className="search">
           
             <img src="/img/search.svg" alt="search"/> 
@@ -32,6 +38,7 @@ export const Home = ({items, searchValue, setSearchValue, onChangeInput, onAddTo
       <div className="cards">
       {renderItems()}
       </div>
+     
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {appContext} from '../App'
 
-        <img src="/img/basketNull.png" alt="" />
+        {/* <img src="/img/basketNull.png" alt="" /> */}
 export const Info = ( {image,title, description}) => {
     const {handelOnCard} = React.useContext(appContext)
  

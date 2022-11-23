@@ -16,7 +16,7 @@ export const Header = ({onClickCard}) => {
         <header >
           <Link to="/"> 
             <div className="headerLeft">
-            <img width={40} height={40} src="img/Logo.svg"/>
+            <img width={40} height={40} src="img/logo.svg"/>
               <div className="headerInfo">
                 <h1>CRYPTO MARKET</h1>
                 <p>Покупайте криптовалюту у нас</p>

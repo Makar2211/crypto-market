@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card } from '../components/Card'
-import Swap from '../components/Swiper'
+import Swap from '../components/Slider/Swiper'
 
 export const Home = ({items, searchValue, setSearchValue, onChangeInput, onAddToFafourite, onAddToCard,  isLoading }) => {
   

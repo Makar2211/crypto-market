@@ -5,6 +5,8 @@ import {Parallax, Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import style from './Swiper.module.scss'
+
 
 function Swap() {
   return (
@@ -41,7 +43,7 @@ function Swap() {
             Создатель: Сатоши Накамото
           </div>
           <div className="text" data-swiper-parallax="-100">
-            <p style={{"fontSize": 16}}>
+            <p className={style.textSwiper} >
               Bitcoin — пиринговая платёжная система, использующая одноимённую
               единицу для учёта операций. Для обеспечения функционирования и
               защиты системы используются криптографические методы, но при этом
@@ -58,7 +60,7 @@ function Swap() {
             Создатели: Анатолий Яковенко и Грег Фицджеральд
           </div>
           <div className="text" data-swiper-parallax="-100">
-            <p style={{"fontSize": 16}}>
+            <p className={style.textSwiper} >
             Solana – это блокчейн, предназначенный для поддержки масштабируемых децентрализованных приложений <br/>
             Solana – это продвинутый блокчейн-проект с открытым исходным кодом, который стремится использовать несколько прорывных технологий для следующего поколения DApps.
             </p>
@@ -72,7 +74,7 @@ function Swap() {
           Создатели: Александр Скиданов и Илья Полосухин
           </div>
           <div className="text" data-swiper-parallax="-100">
-          <p style={{"fontSize": 16}}>
+          <p className={style.textSwiper}>
             Near Protocol — это блокчейн с поддержкой смарт-контрактов, который призван стать платформой следующего поколения для DApps с уникальным решением масштабирования
             </p>
           </div>
@@ -86,7 +88,7 @@ function Swap() {
           Создатели: Дже Квон
           </div>
           <div className="text" data-swiper-parallax="-100">
-            <p style={{"fontSize": 16}}>
+            <p className={style.textSwiper}>
             Cosmos — это децентрализованная экосистема, состоящая из отдельных блокчейнов, которые не зависят друг от друга. Блокчейны работают с использованием византийского алгоритма отказоустойчивости (BFT). Именно BFT достигает консенсуса в сети и позволяет распределять токены с помощью механизма проверки правдоподобия. Основными вариантами использования токена ATOM являются размещение на платформе и выполнение транзакций с токенами в Cosmos Hub.
             </p>
           </div>
@@ -99,7 +101,7 @@ function Swap() {
           Создатели: Кристофер Сандберг и Линус Бломберг
           </div>
           <div className="text" data-swiper-parallax="-100">
-            <p style={{"fontSize": 16}}>
+            <p className={style.textSwiper}>
             Цель Avalanche — увеличить масштабирование без ущерба для скорости и децентрализации. Основу платформы составляют три блокчейна: чейн биржи (X-Chain), чейн контракта (C-Chain) и чейн платформы (P-Chain). X-Chain используют для создания активов и торговли. C-Chain предназначен для создания смарт-контрактов. P-Chain согласует между собой валидаторов и подсети.
             </p>
           </div>
@@ -112,7 +114,7 @@ function Swap() {
           Создатели: Арджун и Михайло Бьелич
           </div>
           <div className="text" data-swiper-parallax="-100">
-            <p style={{"fontSize": 16}}>
+            <p className={style.textSwiper}>
             Polygon — это сеть защищенных решений второго уровня (L2) и автономных сайдчейнов. Ее цель — повысить масштабируемость блокчейна Ethereum и сократить стоимость транзакций.
             </p>
           </div>
@@ -126,7 +128,7 @@ function Swap() {
           Создатели: Сергей Назаров, Стив Эллис, доктор Ари Джулс
           </div>
           <div className="text" data-swiper-parallax="-100">
-            <p style={{"fontSize": 16}}>
+            <p className={style.textSwiper}>
             Chainlink — децентрализованная сеть оракулов, которые верифицируют и предоставляют данные из внешних источников для смарт-контрактов в блокчейне.
             </p>
           </div>
@@ -139,7 +141,7 @@ function Swap() {
           Создатели: Виталик Бутерин
           </div>
           <div className="text" data-swiper-parallax="-100">
-            <p style={{"fontSize": 16}}>
+            <p className={style.textSwiper}>
             Ethereum — блокчейн-платформа для децентрализованных приложений, и вторая по капитализации криптовалюта (ETH). В сети Ethereum работают большинство популярных проектов в сфере DeFi и NFT.
             </p>
           </div>

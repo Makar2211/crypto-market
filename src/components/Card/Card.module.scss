@@ -1,6 +1,6 @@
 
 .card{
-    margin-top: 40px;
+      margin-top: 40px;
       position: relative;
       box-sizing: border-box;
       width: 210px;
@@ -24,7 +24,10 @@
         cursor: pointer;
       }
       .img{
-        padding: 20px 44px 14px 33px;
+        padding: 20px 40px 14px 40px;
+        display: block;
+        margin: 0 auto;
+      
       }
       p{
         text-align: center;
@@ -62,4 +65,17 @@
           cursor: pointer;
         }
       }
+  }
+
+  @media screen and (max-width: 1049px) {
+
+    .card{
+        margin-left: 20px;
+      }
+  }
+  @media screen and (max-width: 1020px) {
+    .card{
+      margin-left: 0px;
+    }
+    
   }

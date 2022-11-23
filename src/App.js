@@ -107,10 +107,10 @@ function App() {
   
 
   return (
-    <appContext.Provider value={ {cardItems, favourites, items, isItemAdded, onAddToFafourite, handelOnCard, setCardItems, onAddToCard} }>
+    <appContext.Provider value={ {cardItems, favourites, items, isItemAdded, onAddToFafourite, handelOnCard, setCardItems, onAddToCard, cartOpened, setCardOpened }}>
       <div className="wrapper">
       
-      { cartOpened === true ? <Drawer onRemove={onRemoveItem}  items={cardItems} onClickCard={handelOnCard}/> : null }
+      {cartOpened === true ? <Drawer onRemove={onRemoveItem}  items={cardItems} onClickCard={handelOnCard}/> : null}
 
       <Header onClickCard={handelOnCard} />
         <Switch>

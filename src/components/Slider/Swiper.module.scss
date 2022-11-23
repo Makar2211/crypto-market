@@ -1,0 +1,18 @@
+.textSwiper{
+    font-size: 17px;
+  }
+@media screen and (max-width: 675px) {
+    .swiper-slide .title {
+        font-size: 33px;
+        font-weight: 300;
+    }
+    .swiper-slide 
+      .subtitle {
+        font-size: 17px;
+      }
+    .textSwiper{
+      font-size: 14px;
+    }
+   
+      
+  }

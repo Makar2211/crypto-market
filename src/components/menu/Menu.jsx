@@ -20,14 +20,14 @@ export const Menu = ({header, handelMenu, onClickCard}) => {
                     <span>{totalPrice} $</span>
                 </li>
                 <li>
-                    <Link to="favourites" onClick={handelMenu}>
+                    <Link to="/favourites" onClick={handelMenu}>
                     <img width={18} height={18} src="img/heart.svg"/>
                     <span style={{"marginLeft": 10 }}>Закладки</span>
                     </Link>
                 
                 </li>
                 <li onClick={handelMenu}>
-                <Link to="orders" >
+                <Link to="/orders" >
                 <img width={18} height={18} src="img/user.svg"/>
                  <span style={{"marginLeft": 10 }}>Ордера</span>
                 </Link>

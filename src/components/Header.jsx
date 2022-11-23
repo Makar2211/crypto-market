@@ -14,7 +14,7 @@ export const Header = ({onClickCard}) => {
 
     return (
         <header >
-          <Link to=""> 
+          <Link to="/"> 
             <div className="headerLeft">
             <img width={40} height={40} src="img/Logo.svg"/>
               <div className="headerInfo">
@@ -31,13 +31,13 @@ export const Header = ({onClickCard}) => {
                   <span>{totalPrice} $</span>
                 </li>
               <li>
-                <Link to="favourites">
+                <Link to="/favourites">
                   <img width={18} height={18} src="img/heart.svg"/>
                 </Link>
               
               </li>
               <li>
-             <Link to="orders">
+             <Link to="/orders">
              <img width={18} height={18} src="img/user.svg"/>
              </Link>
               </li>

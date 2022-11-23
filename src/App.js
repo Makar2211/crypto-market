@@ -114,11 +114,11 @@ function App() {
 
       <Header onClickCard={handelOnCard} />
         <Switch>
-          <Route exact  path="/favourites"> 
+          <Route exact  path="favourites"> 
                 <Favourites
               />
           </Route>
-          <Route exact  path="/"> 
+          <Route exact  path=""> 
           
               <Home  
               items={items}  
@@ -131,7 +131,7 @@ function App() {
               isLoading={isLoading}
             />
           </Route>
-          <Route exact  path="/orders">
+          <Route exact  path="orders">
             <Orders/>
           </Route>
         </Switch>

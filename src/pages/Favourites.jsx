@@ -32,8 +32,8 @@ export const Favourites = () => {
               <div className='center'>
                 <h2>Закладок нет :(</h2>
                 <p>Вы ничего не добавляли в закладки</p>
-                <Link to='/'>
-                <button  className="greenBotton">Оформить заказ <img src='/img/errow-left.svg'/></button>
+                <Link to=''>
+                <button  className="greenBotton">Оформить заказ <img src='img/errow-left.svg'/></button>
                 </Link>
               </div>
             </div>

@@ -49,7 +49,7 @@ return (
                   <h2>У вас нет заказов</h2>
                   <p style={{"textAlign": "center" }}>Вы нищеброд? <br/> Оформите хотя бы один заказ.</p>
                   <Link to='/'>
-                  <button  className="greenBotton">Оформить заказ <img src='/img/errow-left.svg'/></button>
+                  <button  className="greenBotton">Оформить заказ <img src='img/errow-left.svg'/></button>
                   </Link>
                 </div>
               </div>

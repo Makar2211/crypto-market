@@ -41,7 +41,7 @@ export const Card = ({id, name, price, imageUrl, onClickPlus, onClickFavourite, 
                 <div>
                  {
                   onClickFavourite && 
-                   <img className={style.like} onClick={handelLike}  src={isFavourite ? '/img/heart-like.svg' : '/img/heart-unlike.svg'} alt='like'/> 
+                   <img className={style.like} onClick={handelLike}  src={isFavourite ? 'img/heart-like.svg' : 'img/heart-unlike.svg'} alt='like'/> 
                  }
                   </div>
                     <img className={style.img} width={133} height={112} src={imageUrl}/>
@@ -53,7 +53,7 @@ export const Card = ({id, name, price, imageUrl, onClickPlus, onClickFavourite, 
                     </div>
                     {
                       onClickPlus &&
-                      <img className={style.img_bot} onClick={handelClickPlus} src={isItemAdded(id)  ? '/img/added-to-card.svg' : '/img/plus.svg'} /> 
+                      <img className={style.img_bot} onClick={handelClickPlus} src={isItemAdded(id)  ? 'img/added-to-card.svg' : 'img/plus.svg'} /> 
                     }
               </div>            
                </>

@@ -28,9 +28,9 @@ export const Home = ({items, searchValue, setSearchValue, onChangeInput, onAddTo
           <h2>Все криптовалюты</h2>
           <div className="search">
           
-            <img src="/img/search.svg" alt="search"/> 
+            <img src="img/search.svg" alt="search"/> 
             <input onChange={onChangeInput} value={searchValue} placeholder="Поиск..." />
-            {searchValue && ( <img  onClick={() => setSearchValue('')} className="close" src="/img/btn-remove.svg"/>)}
+            {searchValue && ( <img  onClick={() => setSearchValue('')} className="close" src="img/btn-remove.svg"/>)}
             </div>
            
         </div>

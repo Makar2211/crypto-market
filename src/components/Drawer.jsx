@@ -43,7 +43,7 @@ export const Drawer = ({onClickCard,onRemove,  items = [], opened}) => {
    
         <div className="cartTop">
         <div><h2>Корзина</h2></div>
-        <div onClick={onClickCard}><img className="minus" src="/img/btn-remove.svg"/> </div>
+        <div onClick={onClickCard}><img className="minus" src="img/btn-remove.svg"/> </div>
         </div>
 
         {
@@ -59,7 +59,7 @@ export const Drawer = ({onClickCard,onRemove,  items = [], opened}) => {
                         <b>{obj.price} $</b>
                       </div>
                         
-                      <img onClick={() => onRemove(obj.id)}  className="minus" src="/img/btn-remove.svg"/> 
+                      <img onClick={() => onRemove(obj.id)}  className="minus" src="img/btn-remove.svg"/> 
               </div>
 
               
@@ -81,12 +81,12 @@ export const Drawer = ({onClickCard,onRemove,  items = [], opened}) => {
             <b>{Math.floor(totalPrice * 0.05)} $</b>
             </li>
         </ul>
-        <button disabled={isLoading} onClick={onClickOrder} className="greenBotton">Оформить заказ <img src='/img/errow.svg'/></button>
+        <button disabled={isLoading} onClick={onClickOrder} className="greenBotton">Оформить заказ <img src='img/errow.svg'/></button>
         </div>           
       </>) : (
       <Info 
         title={isOrderComplited ? 'Заказ оформлен!'  : 'Корзина пустая'} 
-        description={isOrderComplited ? `Ваш заказ #${orderId} успешно оформлен` : 'Добавьте хотя бы одну крипту, чтобы сделать заказ.'} image={isOrderComplited ? "/img/orderIdAdd.jpg" : "/img/basketNull.png"}
+        description={isOrderComplited ? `Ваш заказ #${orderId} успешно оформлен` : 'Добавьте хотя бы одну крипту, чтобы сделать заказ.'} image={isOrderComplited ? "img/orderIdAdd.jpg" : "img/basketNull.png"}
       />
       )
     }

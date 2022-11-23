@@ -9,26 +9,26 @@ export const Menu = ({header, handelMenu, onClickCard}) => {
     <div className={style.menu}>
         <div className={style.blur}>
             <div className={style.menu__content}>
-            <div onClick={handelMenu} ><img className={style.minus} src="/img/btn-remove.svg"/> </div>
+            <div onClick={handelMenu} ><img className={style.minus} src="img/btn-remove.svg"/> </div>
             <div className={style.menu__header}>{header}</div>
                 <div className="menu">
                 <ul >
                 <li onClick={() => {handelMenu(); onClickCard()}} style={{cursor: 'pointer'}}>
                     
-                <img width={18} height={18}  src="/img/cart.svg"/>
+                <img width={18} height={18}  src="img/cart.svg"/>
                     <span style={{"marginLeft": 10 }}>Корзина</span>
                     <span>{totalPrice} $</span>
                 </li>
                 <li>
-                    <Link to="/favourites" onClick={handelMenu}>
-                    <img width={18} height={18} src="/img/heart.svg"/>
+                    <Link to="favourites" onClick={handelMenu}>
+                    <img width={18} height={18} src="img/heart.svg"/>
                     <span style={{"marginLeft": 10 }}>Закладки</span>
                     </Link>
                 
                 </li>
                 <li onClick={handelMenu}>
-                <Link to="/orders" >
-                <img width={18} height={18} src="/img/user.svg"/>
+                <Link to="orders" >
+                <img width={18} height={18} src="img/user.svg"/>
                  <span style={{"marginLeft": 10 }}>Ордера</span>
                 </Link>
                 </li>

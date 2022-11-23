@@ -10,7 +10,7 @@ export const Info = ( {image,title, description}) => {
         <img src={image} alt="" />
         <h2>{title}</h2>
         <p>{description}</p>
-        <button className="greenBotton" onClick={() => handelOnCard()}><img src='/img/errow-left.svg'/> Оформить заказ </button>
+        <button className="greenBotton" onClick={() => handelOnCard()}><img src='img/errow-left.svg'/> Оформить заказ </button>
       </div> 
   )
 }

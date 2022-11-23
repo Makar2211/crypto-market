@@ -14,9 +14,9 @@ export const Header = ({onClickCard}) => {
 
     return (
         <header >
-          <Link to="/"> 
+          <Link to=""> 
             <div className="headerLeft">
-            <img width={40} height={40} src="/img/Logo.svg"/>
+            <img width={40} height={40} src="img/Logo.svg"/>
               <div className="headerInfo">
                 <h1>CRYPTO MARKET</h1>
                 <p>Покупайте криптовалюту у нас</p>
@@ -27,18 +27,18 @@ export const Header = ({onClickCard}) => {
           <div className="headerRight">
             <ul >
                 <li onClick={onClickCard} style={{cursor: 'pointer'}}>
-                <img width={18} height={18}  src="/img/cart.svg"/>
+                <img width={18} height={18}  src="img/cart.svg"/>
                   <span>{totalPrice} $</span>
                 </li>
               <li>
-                <Link to="/favourites">
-                  <img width={18} height={18} src="/img/heart.svg"/>
+                <Link to="favourites">
+                  <img width={18} height={18} src="img/heart.svg"/>
                 </Link>
               
               </li>
               <li>
-             <Link to="/orders">
-             <img width={18} height={18} src="/img/user.svg"/>
+             <Link to="orders">
+             <img width={18} height={18} src="img/user.svg"/>
              </Link>
               </li>
             </ul>
